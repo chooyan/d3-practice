@@ -1,0 +1,47 @@
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    
+    <style type="text/css">
+
+.chart {
+  background-color: #006400;
+  color: white;
+  margin: 1px;
+  padding: 3px;
+  text-align: right;
+  font: 10px sans-serif;
+  width: 0px;
+}
+    </style>
+    <script type="text/javascript" src="./d3.min.js"></script>
+    <script type="text/javascript">
+
+
+var data = [4];
+function init(){
+
+
+var body = d3.select("body");
+section = body.selectAll("section").data(data).enter().append("div")
+                   .attr("class", "chart")
+                   .style("width", function(d) { return d * 10 + "px"; })
+                   .text(function(d) { return d; });
+
+setInterval(function() {
+  var num = Math.floor(Math.random() * 50 + 1);
+  section.data([num]).enter().append("div")
+                     .attr("class", "chart")
+                     .transition()
+                     .style("width", function(d) { return d * 10 + "px"; })
+                     .text(function(d) { return d; });
+  }, 1000);
+}
+    </script>
+    
+  </head>
+  <body onload="init()">
+    <section>
+    </section>
+  </body>
+</html>
